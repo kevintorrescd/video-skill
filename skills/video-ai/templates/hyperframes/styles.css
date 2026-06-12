@@ -1,4 +1,4 @@
-﻿/* ═══════════════════════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════════════════════════
    GOLGOTHA ACADEMY · HyperFrames Design System
    Base stylesheet for 1920×1080 @30fps educational video scenes
    ═══════════════════════════════════════════════════════════════════════════ */
@@ -365,17 +365,38 @@ body {
 /* ══════════════════════════════════════════════════════════════════════════
    BRAND
    ══════════════════════════════════════════════════════════════════════════ */
+.brand-logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: var(--space-md);
+}
+
+.brand-logo-svg {
+  width: 160px;
+  height: 160px;
+  margin-bottom: var(--space-sm);
+}
+
+.brand-logo-svg path {
+  fill: var(--color-accent-green);
+}
+
 .brand-logo {
   font-family: var(--font-title);
   font-weight: 800;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-fg-title-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
 }
 
-.brand-logo--lg  { font-size: 96px; }
-.brand-logo--md  { font-size: 64px; }
-.brand-logo--sm  { font-size: 40px; }
+.brand-logo--lg  { font-size: 64px; }
+.brand-logo--md  { font-size: 44px; }
+.brand-logo--sm  { font-size: 32px; }
 
 .brand-logo__accent {
   color: var(--color-accent-green);
