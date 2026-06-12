@@ -1,6 +1,6 @@
-﻿# Visual Guidelines — Video Design System
+# Visual Guidelines — Video Design System
 
-> **Brand**: GOLGOTHA ACADEMY · **Domain**: Educational video (tutor-style classes)
+> **Brand**: Golgotha Academy · **Domain**: Educational video (tutor-style classes)
 > **Engines**: HyperFrames (HeyGen), Remotion, NotebookLM
 > **Last updated**: 2026-06-12
 
@@ -170,41 +170,38 @@ Agents must select the appropriate scene type for each content block.
 
 ### 3.1 Intro / Brand Open
 
-> Purpose: Establish the brand and introduce the lesson topic.
+> Purpose: Establish the brand identity. This scene is **strictly brand-centric and content-agnostic**: it must never contain lesson titles, subtitles, module badges, or dividers.
 
 | Property | Value |
 |---|---|
 | Duration | 3 – 5 seconds |
-| Background | `bg-scene` (`#f8fafc`) |
-| Decorative elements | Subtle geometric shapes (circles, rounded rectangles) in `accent-green-soft` (`#CFF8E2`), positioned at edges with low opacity (20-40%) |
+| Background | Solid white (`#ffffff`) |
+| Decorative elements | None (no floating circles, background shapes, or side borders) |
 
 **Layout:**
 
 ```
 ┌──────────────────────────────────────────────┐
 │                                              │
-│          ○  ○  (decorative shapes)           │
 │                                              │
-│             G O L G O T H A                  │
+│                    (Logo)                    │
+│                                              │
+│              Golgotha Academy                │
 │          Montserrat ExtraBold 64px           │
-│             #059669 (green)                  │
 │                                              │
-│         "Curso de Biología — Módulo 3"       │
-│           Inter Regular 24px #4b5563         │
 │                                              │
-│          ○           ○  (shapes)             │
+│                                              │
 └──────────────────────────────────────────────┘
 ```
 
-**Animation sequence:**
+**Animation sequence (Motion Graphics):**
 
-1. Background fades in (200 ms).
-2. Decorative shapes fade in and drift slightly inward (400 ms, ease-out).
-3. GOLGOTHA ACADEMY wordmark scales from `0.8` → `1.0` with `ease-out` (500 ms).
-4. Course/module title fades in + slides up 20 px (400 ms, 200 ms delay after logo).
-5. Hold for 2 – 3 s.
+1. Solid white background displays instantly.
+2. Logo SVG left path slides in from left (with spring ease-out, damping: 14, mass: 1, stiffness: 100) and right path slides in from right, merging in the center.
+3. Wordmark text `Golgotha Academy` characters stagger in (kinetic typography letter slide-up/fade, 400 ms duration, 30 ms offset per character).
+4. Hold for 2.5s.
 
-**Sound:** Optional subtle intro chime (≤ 1 s). No loud jingles.
+**Sound:** Optional subtle brand chime (≤ 1 s). No loud jingles.
 
 ---
 
@@ -588,12 +585,12 @@ Agents must select the appropriate scene type for each content block.
 
 ### 3.10 Closing / Brand Outro
 
-> Purpose: End the video with brand reinforcement and optional CTA.
+> Purpose: End the video with brand reinforcement and contact info. Centered and minimal.
 
 | Property | Value |
 |---|---|
 | Duration | 3 – 5 seconds |
-| Background | `bg-scene` |
+| Background | Solid white (`#ffffff`) |
 | Layout | Centered, mirrors intro |
 
 **Layout:**
@@ -601,34 +598,32 @@ Agents must select the appropriate scene type for each content block.
 ```
 ┌──────────────────────────────────────────────┐
 │                                              │
-│          ○  ○  (decorative shapes)           │
+│                    (Logo)                    │
 │                                              │
-│             G O L G O T H A                  │
-│             #059669, 56px                    │
+│              Golgotha Academy                │
 │                                              │
-│        "¡Gracias por tu atención!"           │
-│         Inter Regular 22px, #4b5563          │
+│        "¡Gracias por aprender con nosotros!"  │
+│         Inter Bold 36px, #111111             │
 │                                              │
-│     [🌐 web]  [📱 social]  [📧 email]       │
-│      Inter Regular 14px, accent-blue         │
+│   golgotha.academy   +57 3018278917   @golgotha.academy  │
 │                                              │
 └──────────────────────────────────────────────┘
 ```
 
-**Animation sequence (reverse of intro):**
+**Animation sequence (mirrors intro):**
 
-1. Social links row fades in (300 ms).
-2. CTA text fades in (300 ms, 100 ms delay).
-3. GOLGOTHA ACADEMY wordmark fades in + scales from 0.8 → 1.0 (500 ms, ease-out).
-4. Decorative shapes drift in (400 ms).
-5. Hold 2 – 3 s.
-6. Entire scene fades to `bg-scene` (500 ms).
+1. Logo SVG paths assemble in the center using springs (left/right path slide-in).
+2. Wordmark text `Golgotha Academy` staggers in.
+3. Thank you message fades and slides up (300 ms).
+4. Social links row fades and staggers in at the bottom (400 ms).
+5. Hold for 2s.
 
-**CTA text options:**
-- "¡Gracias por tu atención!"
-- "Thanks for watching!"
-- "¿Preguntas? Déjalas en los comentarios"
-- Custom text provided by user
+**Contact handles:**
+- Website: `golgotha.academy`
+- WhatsApp: `+57 3018278917`
+- Instagram: `@golgotha.academy`
+
+*Note: No CTA buttons, geometric shapes, or left borders are allowed in this scene.*
 
 ---
 
@@ -841,14 +836,13 @@ When multiple items appear sequentially (bullets, list items, quiz options):
 
 ---
 
-## 8. GOLGOTHA ACADEMY Brand Rules
+## 8. Golgotha Academy Brand Rules
 
 ### 8.1 Wordmark
 
-- Text: `GOLGOTHA ACADEMY` (all uppercase, with letter-spacing `0.12em`)
+- Text: `Golgotha Academy` (sentence case, no forced uppercase)
 - Font: Montserrat ExtraBold 800
-- Primary color: `accent-green` (`#059669`)
-- Alternate: `fg-title-main` (`#000000`) — only when green doesn't contrast enough with background
+- Colors: "Golgotha" in `#111111` or `#000000`, "Academy" in `#059669`.
 
 ### 8.2 Placement
 
@@ -918,7 +912,7 @@ When multiple items appear sequentially (bullets, list items, quiz options):
 | Left-align body text | Justify paragraphs |
 | Use generous whitespace and padding | Cram content or use tiny fonts |
 | Animate with purpose and consistency | Add gratuitous, unrelated animations |
-| Include GOLGOTHA ACADEMY branding at intro + outro | Skip or minimize branding |
+| Include Golgotha Academy branding at intro + outro | Skip or minimize branding |
 | Use consistent timing per scene type | Rush scene transitions (< 0.5 s gap) |
 | Provide subtitle overlays for all narration | Assume all viewers can hear audio |
 | Present one concept per scene | Overload scenes with multiple topics |
@@ -977,4 +971,4 @@ Each component/template must import colors and typography from the shared design
 
 ---
 
-*This document is the single source of truth for all visual decisions in GOLGOTHA ACADEMY educational videos. Any deviation must be documented and approved by the content creator.*
+*This document is the single source of truth for all visual decisions in Golgotha Academy educational videos. Any deviation must be documented and approved by the content creator.*

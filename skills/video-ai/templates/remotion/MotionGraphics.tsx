@@ -657,7 +657,7 @@ interface BrandLogoProps {
 }
 
 export const BrandLogo: React.FC<BrandLogoProps> = ({
-  text = 'GOLGOTHA ACADEMY',
+  text = 'Golgotha Academy',
   color = COLORS.accentGreen,
   textColor,
   fontSize = 48,

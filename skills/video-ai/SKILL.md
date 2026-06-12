@@ -1,13 +1,13 @@
 ---
 name: video-ai
-description: "Create educational video content using the GOLGOTHA ACADEMY visual brand. Use when the user asks for tutorial videos, explainer animations, class recordings, educational video modules, or any video content that should follow the established style. Supports multiple rendering engines: HyperFrames (HTML→MP4), Remotion (React→MP4), and NotebookLM (AI-generated). Brand appears at intro and outro."
+description: "Create educational video content using the Golgotha Academy visual brand. Use when the user asks for tutorial videos, explainer animations, class recordings, educational video modules, or any video content that should follow the established style. Supports multiple rendering engines: HyperFrames (HTML→MP4), Remotion (React→MP4), and NotebookLM (AI-generated). Brand appears at intro and outro."
 ---
 
 # Video AI — Educational Video Creation Skill
 
 ## Purpose
 
-This skill generates **educational video content** in the style of a professional tutor giving a class. Every video produced must follow the **GOLGOTHA ACADEMY** visual brand system: clean, light backgrounds, academic typography, and a consistent color palette that communicates trust and clarity.
+This skill generates **educational video content** in the style of a professional tutor giving a class. Every video produced must follow the **Golgotha Academy** visual brand system: clean, light backgrounds, academic typography, and a consistent color palette that communicates trust and clarity.
 
 The skill covers the entire pipeline from scene scripting through final render, regardless of the chosen rendering engine. Videos are structured as lessons — they open with brand identification, teach through well-paced visual sequences, and close with a summary and brand sign-off.
 
@@ -118,7 +118,11 @@ Every educational video is composed from these reusable scene patterns. Each pat
 
 ### 1. Intro / Brand Open (3–5 s)
 
-GOLGOTHA ACADEMY logo animation with the course or class title beneath it. Background: `bg-slide`. Logo uses `accent-green` as its primary color. Title in Montserrat ExtraBold, `fg-title-main`. A subtle fade-in or scale-up animation (300–500 ms ease-out). May include a thin `accent-green` line or bar that draws across the screen.
+Golgotha Academy logo animation. This scene is **strictly brand-centric and content-agnostic**: it must never include module numbers, lesson titles, subtitles, or badges.
+- **Background**: Solid white (`#ffffff`).
+- **Logo/Wordmark**: Centered logo SVG and the brand name "Golgotha Academy" in Montserrat ExtraBold (with "Golgotha" in `#111111` and "Academy" in `#059669`).
+- **Motion Graphics**: The logo SVG path is divided into its left and right parts, which slide and scale in from opposite directions using spring physics to assemble in the center. The brand name characters stagger in (kinetic typography letter slide-up/fade).
+- **Prohibitions**: No floating circles, no geometric background shapes, and no green vertical lines or borders on the left side of the screen.
 
 ### 2. Topic Presentation (5–8 s)
 
@@ -161,7 +165,14 @@ Background: `bg-slide`. Keep it fast and clean — no decorative excess.
 
 ### 10. Closing / Brand Outro (3–5 s)
 
-GOLGOTHA ACADEMY branding returns. Logo centered, Montserrat ExtraBold. Below: a call-to-action ("Suscríbete", "Sigue aprendiendo") in `fg-body`. Optional social links or QR code. Background: `bg-slide`. A `accent-green` bar or accent line frames the composition. Mirrors the Intro for visual bookending.
+Golgotha Academy branding returns to close the video. Centered and minimal.
+- **Background**: Solid white (`#ffffff`).
+- **Content**: Center brand logo and wordmark (sentence case), followed by a simple centered thank you message ("¡Gracias por aprender con nosotros!").
+- **Contact Handles**: Display strictly the three requested channels centered at the bottom:
+  * Website: `golgotha.academy`
+  * WhatsApp: `+57 3018278917`
+  * Instagram: `golgotha.academy` (rendered as `@golgotha.academy` in UI links)
+- **Prohibitions**: No CTA buttons, no floating background shapes, no geometric decorations, and no green side border lines. Animate paths and text similarly to the Intro.
 
 ### 11. Lower Third (overlay)
 
@@ -202,17 +213,17 @@ Synchronized subtitle text at the bottom-center of the screen. Text in Inter Reg
 
 ---
 
-## GOLGOTHA ACADEMY Branding Rules
+## Golgotha Academy Branding Rules
 
 | Rule | Detail |
 |---|---|
-| **Placement** | GOLGOTHA ACADEMY branding **MUST** appear in the **Intro / Brand Open** scene (Scene 1) and the **Closing / Brand Outro** scene (Scene 10). |
+| **Placement** | Golgotha Academy branding **MUST** appear in the **Intro / Brand Open** scene (Scene 1) and the **Closing / Brand Outro** scene (Scene 10). |
 | **Logo SVG** | The official logo is at `assets/logo-golgotha-academy.svg`. It is a single-color SVG designed for dynamic coloring: use `fill="#059669"` on light backgrounds, `fill="#ffffff"` on dark overlays. Animate via CSS/JS `transform` (scale, opacity). |
-| **Logo / Wordmark** | Centered or left-aligned. Always prefer the SVG logo from `assets/`. Accompany it with the wordmark "GOLGOTHA ACADEMY" in Montserrat ExtraBold. |
-| **Brand Color** | The primary brand color is `accent-green` (`#059669`). Use it for the logo fill, intro/outro bars, and brand-associated UI elements. |
-| **Brand Typography** | The brand name is always rendered in **Montserrat ExtraBold**. Never use a different font for the brand name. |
+| **Logo / Wordmark** | Centered. Always prefer the SVG logo from `assets/`. Accompany it with the wordmark "Golgotha Academy" in Montserrat ExtraBold (no forced uppercase). |
+| **Brand Color** | The primary brand color is `accent-green` (`#059669`). |
+| **Brand Typography** | The brand name is always rendered in **Montserrat ExtraBold** in sentence case (`Golgotha Academy`). |
 | **Minimum Clear Space** | The logo/wordmark must have at least 48 px of padding on all sides. Do not crowd it with other elements. |
-| **Do NOT** | Use the brand name in decorative gradients, apply drop shadows to the wordmark, or distort the logo in any way. |
+| **Do NOT** | Use all-caps wordmarks, add neon colors or decorative gradients, use vertical green border lines on the left edge of the screen, or apply drop shadows to the logo. |
 
 ---
 

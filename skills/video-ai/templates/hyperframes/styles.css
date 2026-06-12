@@ -385,8 +385,8 @@ body {
 .brand-logo {
   font-family: var(--font-title);
   font-weight: 800;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-transform: none;
   color: var(--color-fg-title-main);
   display: flex;
   align-items: center;
