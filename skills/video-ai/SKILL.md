@@ -1,6 +1,6 @@
 ---
 name: video-ai
-description: Create educational video content using the GOLGOTHA ACADEMY visual brand. Use when the user asks for tutorial videos, explainer animations, class recordings, educational video modules, or any video content that should follow the established style. Supports multiple rendering engines: HyperFrames (HTML→MP4), Remotion (React→MP4), and NotebookLM (AI-generated). Brand appears at intro and outro.
+description: "Create educational video content using the GOLGOTHA ACADEMY visual brand. Use when the user asks for tutorial videos, explainer animations, class recordings, educational video modules, or any video content that should follow the established style. Supports multiple rendering engines: HyperFrames (HTML→MP4), Remotion (React→MP4), and NotebookLM (AI-generated). Brand appears at intro and outro."
 ---
 
 # Video AI — Educational Video Creation Skill
