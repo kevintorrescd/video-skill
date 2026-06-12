@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="es" data-duration="10s">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920">
+  <title>GOLGOTHA ACADEMY · Summary</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="scene scene-padded">
+    <div class="stack stack--xl" style="flex: 1; justify-content: center; max-width: 1400px; margin: 0 auto;">
+
+      <!-- Header -->
+      <div class="stack stack--md">
+        <span id="summary-pill" class="pill pill--green-solid opacity-0">
+          Puntos clave
+        </span>
+        <h2 id="summary-title" class="title-section opacity-0">
+          {{summary_title | default: "Resumen de la lección"}}
+        </h2>
+      </div>
+
+      <!-- Takeaway List -->
+      <div class="stack stack--lg">
+
+        <!-- Point 1 -->
+        <div class="takeaway-item row row--md opacity-0">
+          <div class="icon-check"></div>
+          <div class="stack stack--sm" style="flex: 1;">
+            <div class="body body-lg body-semibold" style="color: var(--color-fg-title);">
+              {{point_1_title}}
+            </div>
+            <p class="body">{{point_1_desc}}</p>
+          </div>
+        </div>
+
+        <!-- Point 2 -->
+        <div class="takeaway-item row row--md opacity-0">
+          <div class="icon-check"></div>
+          <div class="stack stack--sm" style="flex: 1;">
+            <div class="body body-lg body-semibold" style="color: var(--color-fg-title);">
+              {{point_2_title}}
+            </div>
+            <p class="body">{{point_2_desc}}</p>
+          </div>
+        </div>
+
+        <!-- Point 3 -->
+        <div class="takeaway-item row row--md opacity-0">
+          <div class="icon-check"></div>
+          <div class="stack stack--sm" style="flex: 1;">
+            <div class="body body-lg body-semibold" style="color: var(--color-fg-title);">
+              {{point_3_title}}
+            </div>
+            <p class="body">{{point_3_desc}}</p>
+          </div>
+        </div>
+
+        <!-- Point 4 -->
+        <div class="takeaway-item row row--md opacity-0">
+          <div class="icon-check"></div>
+          <div class="stack stack--sm" style="flex: 1;">
+            <div class="body body-lg body-semibold" style="color: var(--color-fg-title);">
+              {{point_4_title}}
+            </div>
+            <p class="body">{{point_4_desc}}</p>
+          </div>
+        </div>
+
+        <!-- Point 5 -->
+        <div class="takeaway-item row row--md opacity-0">
+          <div class="icon-check"></div>
+          <div class="stack stack--sm" style="flex: 1;">
+            <div class="body body-lg body-semibold" style="color: var(--color-fg-title);">
+              {{point_5_title}}
+            </div>
+            <p class="body">{{point_5_desc}}</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const pill  = document.getElementById('summary-pill');
+      const title = document.getElementById('summary-title');
+      const items = document.querySelectorAll('.takeaway-item');
+
+      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+
+      // 1. Header
+      tl.fromTo(pill,
+          { scale: 0.8, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.4, ease: 'back.out(1.4)' }
+        )
+        .fromTo(title,
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.5 },
+          '-=0.15'
+        );
+
+      // 2. Stagger takeaway items
+      items.forEach((item, i) => {
+        tl.fromTo(item,
+          { x: -40, opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.5 },
+          `+=${i === 0 ? 0.3 : 0.25}`
+        );
+      });
+    });
+  </script>
+
+</body>
+</html>

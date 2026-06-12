@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="es" data-duration="15s">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920">
+  <title>GOLGOTHA ACADEMY · Content Tutor</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="scene scene-padded">
+    <div class="split-layout">
+
+      <!-- ─── Left Column: Content ────────────────────────────────────── -->
+      <div class="split-layout__left stack stack--lg">
+
+        <!-- Topic pill -->
+        <div id="topic-pill" class="pill pill--green opacity-0">
+          {{topic_number}} · {{topic_label}}
+        </div>
+
+        <!-- Section title -->
+        <h2 id="section-title" class="title-section opacity-0">
+          {{section_title}}
+        </h2>
+
+        <!-- Bullet point cards -->
+        <div class="stack stack--md">
+
+          <div class="card card--green content-item opacity-0">
+            <p class="body body-semibold">{{bullet_1}}</p>
+          </div>
+
+          <div class="card card--green content-item opacity-0">
+            <p class="body body-semibold">{{bullet_2}}</p>
+          </div>
+
+          <div class="card card--green content-item opacity-0">
+            <p class="body body-semibold">{{bullet_3}}</p>
+          </div>
+
+          <div class="card card--green content-item opacity-0">
+            <p class="body body-semibold">{{bullet_4}}</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ─── Right Column: Visual ────────────────────────────────────── -->
+      <div class="split-layout__right">
+        <div id="visual" class="image-placeholder opacity-0">
+          {{image_placeholder_text | default: "Imagen o diagrama"}}
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const pill     = document.getElementById('topic-pill');
+      const title    = document.getElementById('section-title');
+      const items    = document.querySelectorAll('.content-item');
+      const visual   = document.getElementById('visual');
+
+      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+
+      // 1. Topic pill slides in from left
+      tl.fromTo(pill,
+          { x: -60, opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.5 }
+        )
+        // 2. Section title slides up
+        .fromTo(title,
+          { y: 40, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6 },
+          '-=0.2'
+        )
+        // 3. Content cards stagger in
+        .fromTo(items,
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.5,
+            stagger: 0.2,
+          },
+          '-=0.15'
+        )
+        // 4. Visual fades in from right
+        .fromTo(visual,
+          { x: 80, opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.6 },
+          '-=0.6'
+        );
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="es" data-duration="variable">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920">
+  <title>GOLGOTHA ACADEMY · Subtitle Overlay</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="scene">
+
+    <!--
+      Subtitle overlay component.
+      Designed for compositing — the scene background is the #f8fafc canvas.
+      In production, set background to transparent if layering over video.
+    -->
+
+    <!-- Subtitle -->
+    <div id="subtitle" class="subtitle-overlay" style="opacity: 0;">
+      <div class="subtitle-overlay__bg">
+        <p class="subtitle-overlay__text">
+          {{subtitle_text}}
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const el = document.getElementById('subtitle');
+
+      // Configuration: adjust holdTime per subtitle segment
+      const holdTime = parseFloat('{{hold_seconds}}') || 3;
+
+      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+
+      // 1. Fade in
+      tl.to(el, {
+          opacity: 1,
+          duration: 0.3,
+        })
+        // 2. Hold
+        .to(el, { duration: holdTime })
+        // 3. Fade out
+        .to(el, {
+          opacity: 0,
+          duration: 0.3,
+          ease: 'power2.in',
+        });
+    });
+  </script>
+
+</body>
+</html>

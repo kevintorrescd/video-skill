@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="es" data-duration="5s">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920">
+  <title>GOLGOTHA ACADEMY · Closing</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="scene">
+    <div class="center-layout">
+
+      <!-- Brand Wordmark -->
+      <div id="logo" class="brand-logo brand-logo--lg opacity-0">
+        GOLG<span class="brand-logo__accent">O</span>THA
+      </div>
+
+      <!-- Green Divider -->
+      <div id="divider" class="brand-divider opacity-0" style="width: 0;"></div>
+
+      <!-- Thanks Message -->
+      <p id="thanks" class="brand-subtitle mt-lg opacity-0" style="font-size: 36px;">
+        {{closing_message | default: "Gracias por ver"}}
+      </p>
+
+      <!-- CTA Button (optional) -->
+      <div id="cta" class="mt-xl opacity-0">
+        <button class="cta-button">
+          {{cta_text | default: "Suscríbete al canal"}}
+        </button>
+      </div>
+
+      <!-- Social Links (optional) -->
+      <div id="social" class="social-row opacity-0">
+        <a class="social-link" href="#">{{social_1 | default: "@GOLGOTHA ACADEMY}}</a>
+        <span style="color: var(--color-border-card);">·</span>
+        <a class="social-link" href="#">{{social_2 | default: GOLGOTHA ACADEMY.edu"}}</a>
+        <span style="color: var(--color-border-card);">·</span>
+        <a class="social-link" href="#">{{social_3 | default: "youtube.com/GOLGOTHA ACADEMY}}</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const logo    = document.getElementById('logo');
+      const divider = document.getElementById('divider');
+      const thanks  = document.getElementById('thanks');
+      const cta     = document.getElementById('cta');
+      const social  = document.getElementById('social');
+
+      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+
+      // 1. Logo scales in with bounce
+      tl.fromTo(logo,
+          { scale: 0.6, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.8, ease: 'back.out(1.3)' }
+        )
+        // 2. Divider draws
+        .fromTo(divider,
+          { width: 0, opacity: 0 },
+          { width: 80, opacity: 1, duration: 0.5 },
+          '-=0.2'
+        )
+        // 3. Thanks message slides up
+        .fromTo(thanks,
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.5 },
+          '-=0.15'
+        )
+        // 4. CTA slides up
+        .fromTo(cta,
+          { y: 25, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.5 },
+          '-=0.1'
+        )
+        // 5. Social fades in
+        .fromTo(social,
+          { opacity: 0 },
+          { opacity: 1, duration: 0.4 },
+          '-=0.1'
+        );
+    });
+  </script>
+
+</body>
+</html>

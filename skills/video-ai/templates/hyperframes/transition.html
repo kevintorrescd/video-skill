@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="es" data-duration="3s">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920">
+  <title>GOLGOTHA ACADEMY · Transition</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="scene">
+    <div class="center-layout">
+
+      <!-- Animated green line -->
+      <div id="line" class="transition-line" style="height: 3px; border-radius: 2px;"></div>
+
+      <!-- Next section title -->
+      <h2 id="next-title" class="title-section mt-lg opacity-0">
+        {{next_section_title}}
+      </h2>
+
+      <!-- Optional section number -->
+      <p id="next-label" class="caption mt-md opacity-0">
+        {{section_label | default: ""}}
+      </p>
+
+    </div>
+  </div>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const line  = document.getElementById('line');
+      const title = document.getElementById('next-title');
+      const label = document.getElementById('next-label');
+
+      const tl = gsap.timeline({ defaults: { ease: 'power2.inOut' } });
+
+      // 1. Green line draws across center
+      tl.fromTo(line,
+          { width: '0px' },
+          { width: '200px', duration: 0.6 }
+        )
+        // 2. Title fades in below the line
+        .fromTo(title,
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' },
+          '-=0.1'
+        )
+        // 3. Label fades in
+        .fromTo(label,
+          { opacity: 0 },
+          { opacity: 1, duration: 0.3, ease: 'power2.out' },
+          '-=0.1'
+        );
+    });
+  </script>
+
+</body>
+</html>

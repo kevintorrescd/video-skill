@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html lang="es" data-duration="12s">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920">
+  <title>GOLGOTHA ACADEMY · Quiz</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="scene scene-padded">
+    <div class="stack stack--xl" style="flex: 1; justify-content: center;">
+
+      <!-- Question Header -->
+      <div class="stack stack--md">
+        <span id="quiz-pill" class="pill pill--blue opacity-0">
+          Pregunta {{question_number}}
+        </span>
+        <h2 id="quiz-title" class="title-section opacity-0">
+          {{question_text}}
+        </h2>
+      </div>
+
+      <!-- Answer Options 2×2 Grid -->
+      <div class="quiz-options">
+
+        <!-- Option A -->
+        <div class="quiz-option opacity-0" id="option-a" data-correct="{{is_a_correct}}">
+          <div class="quiz-option__letter">A</div>
+          <div class="quiz-option__text">{{option_a}}</div>
+          <div class="quiz-option__icon"></div>
+        </div>
+
+        <!-- Option B -->
+        <div class="quiz-option opacity-0" id="option-b" data-correct="{{is_b_correct}}">
+          <div class="quiz-option__letter">B</div>
+          <div class="quiz-option__text">{{option_b}}</div>
+          <div class="quiz-option__icon"></div>
+        </div>
+
+        <!-- Option C -->
+        <div class="quiz-option opacity-0" id="option-c" data-correct="{{is_c_correct}}">
+          <div class="quiz-option__letter">C</div>
+          <div class="quiz-option__text">{{option_c}}</div>
+          <div class="quiz-option__icon"></div>
+        </div>
+
+        <!-- Option D -->
+        <div class="quiz-option opacity-0" id="option-d" data-correct="{{is_d_correct}}">
+          <div class="quiz-option__letter">D</div>
+          <div class="quiz-option__text">{{option_d}}</div>
+          <div class="quiz-option__icon"></div>
+        </div>
+
+      </div>
+
+      <!-- Explanation (hidden initially) -->
+      <div id="explanation" class="quiz-explanation opacity-0">
+        <p class="quiz-explanation__text">
+          ✓ {{explanation_text}}
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const pill        = document.getElementById('quiz-pill');
+      const title       = document.getElementById('quiz-title');
+      const options     = document.querySelectorAll('.quiz-option');
+      const explanation = document.getElementById('explanation');
+
+      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+
+      // 1. Show question
+      tl.fromTo(pill,
+          { x: -40, opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.4 }
+        )
+        .fromTo(title,
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.5 },
+          '-=0.15'
+        )
+        // 2. Stagger options in
+        .fromTo(options,
+          { y: 40, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.5, stagger: 0.15 },
+          '-=0.1'
+        )
+        // 3. Pause for "thinking time"
+        .to({}, { duration: 3 })
+        // 4. Reveal answers
+        .call(() => {
+          options.forEach(opt => {
+            const isCorrect = opt.getAttribute('data-correct') === 'true';
+            const icon = opt.querySelector('.quiz-option__icon');
+
+            if (isCorrect) {
+              opt.classList.add('quiz-option--correct');
+              icon.textContent = '✓';
+              icon.style.background = 'var(--color-accent-green)';
+              icon.style.color = '#fff';
+              gsap.to(icon, { opacity: 1, duration: 0.3 });
+              // Pulse correct option
+              gsap.fromTo(opt,
+                { scale: 1 },
+                { scale: 1.03, duration: 0.25, yoyo: true, repeat: 1, ease: 'power2.inOut' }
+              );
+            } else {
+              opt.classList.add('quiz-option--incorrect');
+              icon.textContent = '✕';
+              icon.style.background = 'var(--color-error)';
+              icon.style.color = '#fff';
+              gsap.to(icon, { opacity: 1, duration: 0.3, delay: 0.15 });
+            }
+          });
+        })
+        // 5. Show explanation
+        .fromTo(explanation,
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.5 },
+          '+=0.5'
+        );
+    });
+  </script>
+
+</body>
+</html>

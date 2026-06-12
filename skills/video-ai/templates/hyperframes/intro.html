@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="es" data-duration="5s">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920">
+  <title>GOLGOTHA ACADEMY · Intro</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="scene scene-padded">
+    <div class="center-layout">
+
+      <!-- Brand Wordmark -->
+      <div id="logo" class="brand-logo brand-logo--lg opacity-0">
+        GOLG<span class="brand-logo__accent">O</span>THA
+      </div>
+
+      <!-- Green Divider -->
+      <div id="divider" class="brand-divider opacity-0" style="width: 0;"></div>
+
+      <!-- Course Title -->
+      <h1 id="title" class="title-main mt-lg opacity-0">
+        {{course_title}}
+      </h1>
+
+      <!-- Subtitle -->
+      <p id="subtitle" class="brand-subtitle mt-md opacity-0">
+        {{course_subtitle}}
+      </p>
+
+    </div>
+  </div>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const logo    = document.getElementById('logo');
+      const divider = document.getElementById('divider');
+      const title   = document.getElementById('title');
+      const subtitle = document.getElementById('subtitle');
+
+      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+
+      tl.fromTo(logo,
+          { scale: 0.6, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.8, ease: 'back.out(1.3)' }
+        )
+        .fromTo(divider,
+          { width: 0, opacity: 0 },
+          { width: 80, opacity: 1, duration: 0.5 },
+          '-=0.2'
+        )
+        .fromTo(title,
+          { y: 40, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6 },
+          '-=0.15'
+        )
+        .fromTo(subtitle,
+          { opacity: 0 },
+          { opacity: 1, duration: 0.5 },
+          '-=0.1'
+        );
+    });
+  </script>
+
+</body>
+</html>

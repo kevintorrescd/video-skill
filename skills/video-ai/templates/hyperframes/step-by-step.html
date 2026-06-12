@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html lang="es" data-duration="20s">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920">
+  <title>GOLGOTHA ACADEMY · Step by Step</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="scene scene-padded">
+    <div class="stack stack--lg" style="flex: 1;">
+
+      <!-- Header Row -->
+      <div class="row" style="justify-content: space-between; align-items: flex-end;">
+        <div class="stack stack--sm">
+          <span id="step-pill" class="pill pill--green opacity-0">Paso a paso</span>
+          <h2 id="step-title" class="title-section opacity-0">{{section_title}}</h2>
+        </div>
+        <div id="progress-wrap" class="opacity-0" style="width: 320px;">
+          <div class="caption mb-sm">Progreso</div>
+          <div class="progress-bar">
+            <div id="progress-fill" class="progress-bar__fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Steps Container -->
+      <div class="stack" style="flex: 1; justify-content: center; padding-left: 20px;">
+
+        <!-- Step 1 -->
+        <div class="step-row opacity-0 row row--md" data-step="1">
+          <div class="step-number step-number--pending">1</div>
+          <div class="card card--green" style="flex: 1;">
+            <div class="title-card">{{step_1_title}}</div>
+            <p class="body mt-sm">{{step_1_desc}}</p>
+          </div>
+        </div>
+        <div class="step-connector" data-connector="1"></div>
+
+        <!-- Step 2 -->
+        <div class="step-row opacity-0 row row--md" data-step="2">
+          <div class="step-number step-number--pending">2</div>
+          <div class="card card--green" style="flex: 1;">
+            <div class="title-card">{{step_2_title}}</div>
+            <p class="body mt-sm">{{step_2_desc}}</p>
+          </div>
+        </div>
+        <div class="step-connector" data-connector="2"></div>
+
+        <!-- Step 3 -->
+        <div class="step-row opacity-0 row row--md" data-step="3">
+          <div class="step-number step-number--pending">3</div>
+          <div class="card card--green" style="flex: 1;">
+            <div class="title-card">{{step_3_title}}</div>
+            <p class="body mt-sm">{{step_3_desc}}</p>
+          </div>
+        </div>
+        <div class="step-connector" data-connector="3"></div>
+
+        <!-- Step 4 -->
+        <div class="step-row opacity-0 row row--md" data-step="4">
+          <div class="step-number step-number--pending">4</div>
+          <div class="card card--green" style="flex: 1;">
+            <div class="title-card">{{step_4_title}}</div>
+            <p class="body mt-sm">{{step_4_desc}}</p>
+          </div>
+        </div>
+        <div class="step-connector" data-connector="4"></div>
+
+        <!-- Step 5 -->
+        <div class="step-row opacity-0 row row--md" data-step="5">
+          <div class="step-number step-number--pending">5</div>
+          <div class="card card--green" style="flex: 1;">
+            <div class="title-card">{{step_5_title}}</div>
+            <p class="body mt-sm">{{step_5_desc}}</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const pill         = document.getElementById('step-pill');
+      const title        = document.getElementById('step-title');
+      const progressWrap = document.getElementById('progress-wrap');
+      const progressFill = document.getElementById('progress-fill');
+      const stepRows     = document.querySelectorAll('.step-row');
+      const connectors   = document.querySelectorAll('.step-connector');
+      const totalSteps   = stepRows.length;
+
+      // Hide connectors initially
+      gsap.set(connectors, { opacity: 0 });
+
+      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+
+      // 1. Header
+      tl.fromTo(pill,
+          { x: -40, opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.4 }
+        )
+        .fromTo(title,
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.5 },
+          '-=0.2'
+        )
+        .fromTo(progressWrap,
+          { opacity: 0 },
+          { opacity: 1, duration: 0.3 },
+          '-=0.2'
+        );
+
+      // 2. Reveal each step sequentially
+      stepRows.forEach((row, i) => {
+        const num = i + 1;
+        const stepNum = row.querySelector('.step-number');
+        const connector = document.querySelector(`[data-connector="${num}"]`);
+
+        tl.fromTo(row,
+            { x: -50, opacity: 0 },
+            { x: 0, opacity: 1, duration: 0.5 },
+            `+=0.3`
+          )
+          .call(() => {
+            // Activate step number
+            stepNum.classList.remove('step-number--pending');
+            stepNum.classList.add('step-number--active');
+          }, null, '<')
+          // Update progress
+          .to(progressFill, {
+            width: `${((num) / totalSteps) * 100}%`,
+            duration: 0.4,
+            ease: 'power2.inOut'
+          }, '<');
+
+        // Show connector after step (except last)
+        if (connector) {
+          tl.to(connector, { opacity: 1, duration: 0.2 })
+            .call(() => {
+              connector.classList.add('step-connector--active');
+              // Downgrade previous step from active to completed
+              stepNum.classList.remove('step-number--active');
+            });
+        }
+      });
+
+      // 3. Final step stays active (re-add class to last step)
+      tl.call(() => {
+        const lastNum = stepRows[stepRows.length - 1].querySelector('.step-number');
+        lastNum.classList.add('step-number--active');
+      });
+    });
+  </script>
+
+</body>
+</html>

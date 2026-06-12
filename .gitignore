@@ -1,0 +1,21 @@
+# Node.js / Remotion
+node_modules/
+.npm/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+bun.lockb
+out/
+build/
+dist/
+
+# OS/IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+
+# System/Gemini temp files
+.gemini/
+*.tmp
