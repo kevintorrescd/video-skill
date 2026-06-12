@@ -291,6 +291,7 @@ words.map((word, i) => {
 | Gentle | `{ damping: 15, mass: 1, stiffness: 80 }` | Slow, elegant entrances |
 | Snappy | `{ damping: 20, mass: 0.8, stiffness: 200 }` | Quick, responsive UI |
 | Bouncy | `{ damping: 8, mass: 1, stiffness: 150 }` | Playful, gamified (quizzes) |
+| smoothOvershoot | `{ damping: 14, mass: 0.8, stiffness: 110 }` | Elegant, Vercel-like logo assemblies and staggered texts |
 
 ### Easing Functions
 

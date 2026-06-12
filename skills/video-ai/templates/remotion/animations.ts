@@ -1,4 +1,4 @@
-﻿/**
+/**
  * animations.ts — Remotion animation utilities for GOLGOTHA ACADEMY templates
  *
  * Every visual motion in the template library is built from these
@@ -21,6 +21,9 @@ export const SPRING_CONFIG = {
 
   /** Playful overshoot — icons, badges */
   bouncy: { damping: 10, mass: 1, stiffness: 150 },
+
+  /** Elegant smooth overshoot — Vercel-like logo assembly and texts */
+  smoothOvershoot: { damping: 14, mass: 0.8, stiffness: 110 },
 } as const;
 
 export type SpringPreset = keyof typeof SPRING_CONFIG;

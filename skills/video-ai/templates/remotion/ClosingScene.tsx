@@ -19,7 +19,7 @@ import {
   interpolate,
 } from 'remotion';
 import { COLORS, FONTS, FONT_WEIGHTS, SIZES } from './tokens';
-import { fadeIn, slideInUp } from './animations';
+import { fadeIn, slideInUp, SPRING_CONFIG } from './animations';
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                             */
@@ -52,7 +52,7 @@ export const ClosingScene: React.FC<ClosingSceneProps> = ({
   const springLeft = spring({
     frame,
     fps,
-    config: { damping: 12, mass: 1, stiffness: 120 },
+    config: SPRING_CONFIG.smoothOvershoot,
   });
   const xLeft = interpolate(springLeft, [0, 1], [-40, 0]);
   const scaleLeft = interpolate(springLeft, [0, 1], [0, 1]);
@@ -62,7 +62,7 @@ export const ClosingScene: React.FC<ClosingSceneProps> = ({
   const springRight = spring({
     frame: frame - 8, // 8-frame offset delay
     fps,
-    config: { damping: 12, mass: 1, stiffness: 120 },
+    config: SPRING_CONFIG.smoothOvershoot,
   });
   const xRight = interpolate(springRight, [0, 1], [40, 0]);
   const scaleRight = interpolate(springRight, [0, 1], [0, 1]);
@@ -170,7 +170,7 @@ export const ClosingScene: React.FC<ClosingSceneProps> = ({
               const charSpring = spring({
                 frame: charFrame,
                 fps,
-                config: { damping: 15, mass: 0.5, stiffness: 150 },
+                config: SPRING_CONFIG.smoothOvershoot,
               });
               const charY = interpolate(charSpring, [0, 1], [30, 0]);
               const charOpacity = interpolate(charSpring, [0, 1], [0, 1]);
